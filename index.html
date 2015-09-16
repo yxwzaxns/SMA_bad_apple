@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>SM Animation</title>
+	<script type="text/javascript" src="jquery.js"></script>
+</head>
+<style type="text/css">
+*{
+	padding:0px;
+	margin:0px;
+	font:1em "PT Serif",\5FAE\8EDF\6B63\9ED1\9AD4,\5FAE\8F6F\96C5\9ED1,\534E\6587\7EC6\9ED1,Georgia,Times,"Times New Roman",serif;
+	font-size: 6px;
+	line-height: 9px;
+}
+body{
+	width: 100%;
+	height: 100vh;
+}
+#sma{
+	width: 1232px;
+	height: 100vh;
+	cursor: pointer;
+	overflow: hidden;
+	margin: 0 auto;
+}
+.clear{
+	clear: both;
+}
+#vid{
+	position: fixed;
+	display: none;
+}
+</style>
+<body>
+
+
+<audio src="ba.mp3" id="vid"></audio>
+<div id="sma">
+<!-- <img src="images/ba.png" style="width:850px;height:560px;" id="sma"> -->
+</div>
+<script type="text/javascript">
+	id=0;
+	status=0;
+	vid=document.getElementById('vid');
+	$("#sma").click(function(){
+		if(status==0){
+			tid=setInterval(function(){
+				$.get('ajax.php?id='+id,function(e){
+					if(e==0) {clearInterval(id);e='';hand=0;location.href="/index.html"}
+					if(e==1) {clearInterval(id);e='';hand=0;alert('请用电脑观看>.<');location.href="/index.html"}
+					$("#sma").html(e);
+				})
+				id++;
+				},65);
+			vid.play();
+			status=1;
+		}else{
+			clearInterval(tid);
+			vid.pause();
+			status=0;
+		}	
+	})
+</script>
+</body>
+</html>
