@@ -59,8 +59,11 @@ body{
 			clearInterval(tid);
 			vid.pause();
 			status=0;
-		}	
+		}
 	})
+	document.oncontextmenu = function (){
+  	return false
+ 	}
 </script>
 </body>
 </html>
